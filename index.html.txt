@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>🎓 Student Result Dashboard</h1>
+
+  <div class="search-box">
+    <input type="number" id="searchUID" placeholder="Enter UID">
+    <button onclick="searchStudent()">Search</button>
+    <button onclick="resetTable()">Reset</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>UID</th>
+        <th>Marks</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
