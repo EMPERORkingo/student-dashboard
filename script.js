@@ -1,63 +1,57 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  margin: 0;
+let students = [
+  { name: "Rahul", uid: 101, marks: 92 },
+  { name: "Priya", uid: 102, marks: 88 },
+  { name: "Aman", uid: 103, marks: 95 },
+  { name: "Sneha", uid: 104, marks: 90 },
+  { name: "Arjun", uid: 105, marks: 85 },
+  { name: "Neha", uid: 106, marks: 91 },
+  { name: "Karan", uid: 107, marks: 87 },
+  { name: "Riya", uid: 108, marks: 93 },
+  { name: "Vikas", uid: 109, marks: 89 },
+  { name: "Simran", uid: 110, marks: 94 },
+  { name: "Ankit", uid: 111, marks: 86 },
+  { name: "Pooja", uid: 112, marks: 84 }
+];
+
+// Sort students
+students.sort((a, b) => b.marks - a.marks);
+
+// Assign rank
+students.forEach((s, i) => s.rank = i + 1);
+
+// Load table on page load
+window.onload = () => loadTable(students);
+
+function loadTable(data) {
+  const body = document.getElementById("tableBody");
+  body.innerHTML = "";
+
+  data.forEach(s => {
+    let row = `
+      <tr>
+        <td>${s.rank}</td>
+        <td>${s.name}</td>
+        <td>${s.uid}</td>
+        <td>${s.marks}</td>
+      </tr>`;
+    body.innerHTML += row;
+  });
 }
 
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  text-align: center;
+// Search function (FIXED)
+function searchStudent() {
+  let uid = document.getElementById("searchUID").value.trim();
+
+  let student = students.find(s => s.uid == uid);
+
+  if (student) {
+    loadTable([student]); // show only one result
+  } else {
+    alert("Student not found!");
+  }
 }
 
-h1 {
-  margin-bottom: 20px;
-}
-
-.search-box {
-  margin-bottom: 20px;
-}
-
-input {
-  padding: 10px;
-  width: 200px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-button {
-  padding: 10px 15px;
-  margin-left: 5px;
-  border: none;
-  border-radius: 8px;
-  background: #4facfe;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #007bff;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th {
-  background: #4facfe;
-  color: white;
-}
-
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-  background: #f1f1f1;
+// Reset table
+function resetTable() {
+  loadTable(students);
 }
